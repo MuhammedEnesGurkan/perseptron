@@ -1,32 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ShieldAlert, TrendingDown, DollarSign, CalendarClock, BrainCircuit, Landmark, Percent } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+type RecoveryPlan = {
+  recommended_plan_label: string;
+  recommended_interest_rate: number;
+  recommended_term_months: number;
+  recommended_monthly_payment: number;
+  payment_reduction_ratio: number;
+  customer_affordability_score: number;
+  expected_recovery_probability: number;
+  expected_bank_value_index: number;
+  plan_success_label: number;
+  dl_payment_probability: number;
+  ml_default_probability: number;
+  ai_explanation: string;
+};
+
 export default function RecoveryPlanPage() {
   const [loading, setLoading] = useState(true);
-  const [plan, setPlan] = useState<any>(null);
+  const [plan, setPlan] = useState<RecoveryPlan | null>(null);
 
   useEffect(() => {
-    // In a real app we'd pass the customer ID or data
     const fetchPlan = async () => {
       try {
+        const applicant = JSON.parse(sessionStorage.getItem("current_applicant") || "{}");
         const response = await fetch("/api/recommend-plan", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+          body: JSON.stringify(applicant),
         });
         const data = await response.json();
-        
-        // Simulate DL latency
-        setTimeout(() => {
-          setPlan(data);
-          setLoading(false);
-        }, 2000);
+        setPlan(data);
+        setLoading(false);
       } catch (err) {
         console.error(err);
         setLoading(false);
@@ -45,7 +56,7 @@ export default function RecoveryPlanPage() {
         </div>
         <h2 className="mt-6 text-xl font-semibold text-foreground">Generating Recovery Strategy</h2>
         <p className="mt-2 text-muted-foreground max-w-md text-center">
-          Our Deep Learning models are analyzing thousands of successful restructuring plans to find the optimal solution for this applicant.
+          The PyTorch MLP is estimating payment probability and selecting the strongest recovery option for this applicant.
         </p>
       </div>
     );
@@ -62,6 +73,9 @@ export default function RecoveryPlanPage() {
             <Badge variant="outline" className="bg-orange-500/10 text-orange-500 border-orange-500/50">HIGH RISK MITIGATION</Badge>
           </div>
           <p className="text-muted-foreground mt-1">Recommended restructuring to convert high-risk applicant to payable.</p>
+          <p className="text-xs text-muted-foreground mt-2">
+            ML default probability: {(plan.ml_default_probability * 100).toFixed(1)}% | DL payment probability: {(plan.dl_payment_probability * 100).toFixed(1)}%
+          </p>
         </div>
         <Button className="bg-primary hover:bg-primary/90">
           Approve Restructure Plan

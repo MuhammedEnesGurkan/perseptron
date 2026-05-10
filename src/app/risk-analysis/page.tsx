@@ -11,10 +11,23 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
 
+type PredictionResult = {
+  paid_back_probability: number;
+  default_probability: number;
+  prediction: number;
+  prediction_label: string;
+  model_name: string;
+  risk_band: string;
+  ml_default_target: number;
+  decision: string;
+  confidence: number;
+  input: Record<string, FormDataEntryValue>;
+};
+
 export default function RiskAnalysisPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<PredictionResult | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +37,6 @@ export default function RiskAnalysisPage() {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
-    // Mock API call to predict default
     try {
       const response = await fetch("/api/predict-default", {
         method: "POST",
@@ -32,12 +44,8 @@ export default function RiskAnalysisPage() {
         body: JSON.stringify(data),
       });
       const resData = await response.json();
-      
-      // Simulate network delay for effect
-      setTimeout(() => {
-        setResult(resData);
-        setLoading(false);
-      }, 1500);
+      setResult({ ...resData, input: data });
+      setLoading(false);
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -45,8 +53,9 @@ export default function RiskAnalysisPage() {
   };
 
   const proceedToRecovery = () => {
-    // Store result in sessionStorage or just push
+    if (!result) return;
     sessionStorage.setItem("current_prediction", JSON.stringify(result));
+    sessionStorage.setItem("current_applicant", JSON.stringify(result.input));
     router.push("/recovery-plan");
   };
 
@@ -86,6 +95,45 @@ export default function RiskAnalysisPage() {
                   <div className="space-y-2">
                     <Label htmlFor="interest_rate">Interest Rate (%)</Label>
                     <Input id="interest_rate" name="interest_rate" type="number" step="0.1" defaultValue="18.5" className="bg-black/20 border-white/10" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="gender">Gender</Label>
+                    <Select name="gender" defaultValue="Male">
+                      <SelectTrigger className="bg-black/20 border-white/10">
+                        <SelectValue placeholder="Select..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Male">Male</SelectItem>
+                        <SelectItem value="Female">Female</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="marital_status">Marital Status</Label>
+                    <Select name="marital_status" defaultValue="Married">
+                      <SelectTrigger className="bg-black/20 border-white/10">
+                        <SelectValue placeholder="Select..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Single">Single</SelectItem>
+                        <SelectItem value="Married">Married</SelectItem>
+                        <SelectItem value="Divorced">Divorced</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="education_level">Education Level</Label>
+                    <Select name="education_level" defaultValue="PhD">
+                      <SelectTrigger className="bg-black/20 border-white/10">
+                        <SelectValue placeholder="Select..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="High School">High School</SelectItem>
+                        <SelectItem value="Bachelor">Bachelor</SelectItem>
+                        <SelectItem value="Master">Master</SelectItem>
+                        <SelectItem value="PhD">PhD</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="grade_subgrade">Grade / Subgrade</Label>
@@ -154,7 +202,7 @@ export default function RiskAnalysisPage() {
                 <div className="space-y-6 animate-in fade-in duration-500">
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Default Probability</span>
+                      <span className="text-muted-foreground">Default Probability ({result.model_name})</span>
                       <span className="font-bold text-foreground">{(result.default_probability * 100).toFixed(1)}%</span>
                     </div>
                     <Progress 
@@ -180,9 +228,10 @@ export default function RiskAnalysisPage() {
                   <div className="p-4 rounded-xl bg-primary/10 border border-primary/20">
                     <span className="text-xs font-semibold text-primary uppercase tracking-wider">AI Decision</span>
                     <p className="mt-2 text-sm font-medium text-foreground">{result.decision.replace(/_/g, ' ')}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">Paid back probability: {(result.paid_back_probability * 100).toFixed(1)}%</p>
                   </div>
 
-                  {result.decision === "SEND_TO_AI_RECOVERY_PLANNING" && (
+                  {(result.risk_band === "HIGH" || result.risk_band === "CRITICAL") && (
                     <Button onClick={proceedToRecovery} className="w-full group bg-orange-500 hover:bg-orange-600 text-white">
                       Generate Recovery Plan
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

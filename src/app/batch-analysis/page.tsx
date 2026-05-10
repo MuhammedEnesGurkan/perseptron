@@ -8,10 +8,31 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UploadCloud, FileSpreadsheet, Loader2, Download, Filter } from "lucide-react";
 
+type BatchRow = {
+  customer_id: string | number;
+  default_probability: number;
+  paid_back_probability: number;
+  risk_band: string;
+  recommended_plan_label: string;
+  expected_recovery_probability: number;
+  expected_bank_value_index: number;
+  dl_payment_probability: number;
+};
+
+type BatchResults = {
+  total_customers: number;
+  high_risk_customers: number;
+  average_default_probability: number;
+  average_expected_recovery_probability: number;
+  average_bank_value_index: number;
+  recommended_plans_distribution: Record<string, number>;
+  results: BatchRow[];
+};
+
 export default function BatchAnalysisPage() {
   const [file, setFile] = useState<File | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<BatchResults | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -19,21 +40,37 @@ export default function BatchAnalysisPage() {
     }
   };
 
+  const parseCsv = (text: string) => {
+    const [headerLine, ...lines] = text.trim().split(/\r?\n/);
+    const headers = headerLine.split(",").map((header) => header.trim());
+    return lines
+      .filter(Boolean)
+      .map((line, index) => {
+        const values = line.split(",").map((value) => value.trim());
+        return headers.reduce<Record<string, string | number>>((row, header, valueIndex) => {
+          const raw = values[valueIndex] ?? "";
+          const numeric = Number(raw);
+          row[header] = raw !== "" && Number.isFinite(numeric) ? numeric : raw;
+          row.customer_id = row.customer_id || index + 1;
+          return row;
+        }, {});
+      });
+  };
+
   const handleAnalyze = async () => {
     if (!file) return;
     setAnalyzing(true);
 
     try {
-      // Mock API call to /api/batch-predict
+      const rows = parseCsv(await file.text());
       const response = await fetch("/api/batch-predict", {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rows }),
       });
       const data = await response.json();
-      
-      setTimeout(() => {
-        setResults(data);
-        setAnalyzing(false);
-      }, 2500); // Simulate large batch processing
+      setResults(data);
+      setAnalyzing(false);
     } catch (err) {
       console.error(err);
       setAnalyzing(false);
@@ -95,11 +132,11 @@ export default function BatchAnalysisPage() {
               <CardContent className="p-6 flex items-center justify-between">
                 <div>
                   <span className="text-sm font-medium text-muted-foreground block">Expected Recovery Rate</span>
-                  <span className="text-2xl font-bold text-foreground mt-1 block">68.4%</span>
+                  <span className="text-2xl font-bold text-foreground mt-1 block">{(results.average_expected_recovery_probability * 100).toFixed(1)}%</span>
                 </div>
                 <div className="text-right">
                   <span className="text-sm font-medium text-muted-foreground block">Avg Bank Value Index</span>
-                  <span className="text-2xl font-bold text-purple-500 mt-1 block">0.82</span>
+                  <span className="text-2xl font-bold text-purple-500 mt-1 block">{results.average_bank_value_index.toFixed(2)}</span>
                 </div>
               </CardContent>
             </Card>
@@ -142,7 +179,7 @@ export default function BatchAnalysisPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {results.results.map((item: any, i: number) => (
+                {results.results.map((item, i) => (
                   <TableRow key={i} className="border-white/5 hover:bg-white/5">
                     <TableCell className="font-medium">#{item.customer_id.toString().padStart(5, '0')}</TableCell>
                     <TableCell>
