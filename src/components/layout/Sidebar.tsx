@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { LayoutDashboard, FileBarChart, PieChart, Database, Settings } from "lucide-react";
+import { LayoutDashboard, FileBarChart, PieChart, Database, Settings, ScanSearch, Satellite } from "lucide-react";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "New Prediction", href: "/risk-analysis", icon: FileBarChart },
+  { name: "EuroSAT Uydu", href: "/eurosat", icon: Satellite },
+  { name: "BHW ResNet Test", href: "/bhw-resnet", icon: ScanSearch },
   { name: "Batch Analysis", href: "/batch-analysis", icon: Database },
   { name: "Model Insights", href: "/model-insights", icon: PieChart },
   { name: "Settings", href: "#", icon: Settings },

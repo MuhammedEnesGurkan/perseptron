@@ -1,6 +1,8 @@
 import json
 import sys
 import warnings
+import base64
+import io
 from pathlib import Path
 
 import joblib
@@ -8,6 +10,7 @@ import numpy as np
 import pandas as pd
 import torch
 from torch import nn
+from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,6 +38,26 @@ NUMERIC_FEATURES = [
 
 
 warnings.filterwarnings("ignore", category=UserWarning)
+
+RESNET_INPUT_SIZE = 224
+RESNET_MODEL_FILE = "best_resnet18_torchscript.pt"
+RESNET_CLASS_FILE = "resnet_classes.json"
+SATELLITE_MODEL_FILE = "best_convnext_tiny_uydu.pth"
+SATELLITE_INPUT_SIZE = 224
+EUROSAT_CLASS_LABELS = [
+    "AnnualCrop",
+    "Forest",
+    "HerbaceousVegetation",
+    "Highway",
+    "Industrial",
+    "Pasture",
+    "PermanentCrop",
+    "Residential",
+    "River",
+    "SeaLake",
+]
+IMAGENET_MEAN = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
+IMAGENET_STD = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
 
 
 class CreditMLP(nn.Module):
@@ -273,6 +296,95 @@ def batch(records):
     }
 
 
+def load_resnet_model(model_file=RESNET_MODEL_FILE):
+    model = torch.jit.load(MODELS_DIR / model_file, map_location="cpu")
+    model.eval()
+    return model
+
+
+def load_resnet_classes(num_classes: int, class_file=RESNET_CLASS_FILE, fallback_labels=None):
+    class_path = MODELS_DIR / class_file
+    if class_path.exists():
+        labels = json.loads(class_path.read_text(encoding="utf-8"))
+        if isinstance(labels, dict):
+            return [str(labels.get(str(idx), labels.get(idx, f"class_{idx:03d}"))) for idx in range(num_classes)], True
+        if isinstance(labels, list):
+            return [str(labels[idx]) if idx < len(labels) else f"class_{idx:03d}" for idx in range(num_classes)], True
+    if fallback_labels and len(fallback_labels) >= num_classes:
+        return [str(fallback_labels[idx]) for idx in range(num_classes)], True
+    return [f"class_{idx:03d}" for idx in range(num_classes)], False
+
+
+def image_tensor_from_base64(image_base64: str, input_size=RESNET_INPUT_SIZE):
+    if "," in image_base64:
+        image_base64 = image_base64.split(",", 1)[1]
+    image_bytes = base64.b64decode(image_base64)
+    image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    image = image.resize((input_size, input_size), Image.Resampling.BILINEAR)
+    array = np.asarray(image).astype(np.float32) / 255.0
+    tensor = torch.from_numpy(array).permute(2, 0, 1)
+    tensor = (tensor - IMAGENET_MEAN) / IMAGENET_STD
+    return tensor.unsqueeze(0)
+
+
+def predict_image_model(data, model_file, model_name, input_size=RESNET_INPUT_SIZE, class_file=RESNET_CLASS_FILE, fallback_labels=None, dataset=None):
+    image_base64 = data.get("image_base64") if isinstance(data, dict) else None
+    if not image_base64:
+        raise ValueError("image_base64 is required")
+
+    model = load_resnet_model(model_file)
+    tensor = image_tensor_from_base64(image_base64, input_size)
+    with torch.no_grad():
+        logits = model(tensor)
+        if isinstance(logits, (tuple, list)):
+            logits = logits[0]
+        probabilities = torch.softmax(logits.reshape(1, -1), dim=1)[0]
+        top_probs, top_indices = torch.topk(probabilities, k=min(5, probabilities.numel()))
+
+    labels, labels_available = load_resnet_classes(int(probabilities.numel()), class_file, fallback_labels)
+    top_predictions = []
+    for probability, index in zip(top_probs.cpu().tolist(), top_indices.cpu().tolist()):
+        top_predictions.append(
+            {
+                "class_index": int(index),
+                "class_label": labels[int(index)],
+                "probability": float(probability),
+            }
+        )
+
+    best = top_predictions[0]
+    result = {
+        "model_name": model_name,
+        "model_file": model_file,
+        "input_size": input_size,
+        "num_classes": int(probabilities.numel()),
+        "prediction": best["class_index"],
+        "prediction_label": best["class_label"],
+        "confidence": best["probability"],
+        "class_labels_available": labels_available,
+        "top_predictions": top_predictions,
+    }
+    if dataset:
+        result["dataset"] = dataset
+    return result
+
+
+def predict_resnet(data):
+    return predict_image_model(data, RESNET_MODEL_FILE, "ResNet18 TorchScript")
+
+
+def predict_satellite(data):
+    return predict_image_model(
+        data,
+        SATELLITE_MODEL_FILE,
+        "EuroSAT ResNet18 TorchScript",
+        input_size=SATELLITE_INPUT_SIZE,
+        class_file="eurosat_classes.json",
+        fallback_labels=EUROSAT_CLASS_LABELS,
+        dataset="EuroSAT",
+    )
+
+
 def main():
     payload = json.load(sys.stdin)
     action = payload.get("action")
@@ -287,6 +399,10 @@ def main():
         print(json.dumps(recommendation(data)))
     elif action == "batch":
         print(json.dumps(batch(data or [])))
+    elif action == "predict_resnet":
+        print(json.dumps(predict_resnet(data or {})))
+    elif action == "predict_satellite":
+        print(json.dumps(predict_satellite(data or {})))
     else:
         raise ValueError(f"Unsupported action '{action}'")
 
