@@ -6,10 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type EuroSatPrediction = {
   dataset?: string;
   model_name: string;
+  model_id?: string;
   model_file: string;
   input_size: number;
   num_classes: number;
@@ -22,7 +24,115 @@ type EuroSatPrediction = {
     class_label: string;
     probability: number;
   }>;
+  pipeline?: {
+    name: string;
+    decision_authority?: string;
+    stage_1_context_labels: string[];
+    stage_1_passed: boolean;
+    stage_1_context_score?: number;
+    stage_1_best_context_label?: string | null;
+    stage_1_best_context_confidence?: number;
+    stage_2_ran: boolean;
+    stage_2_error?: string | null;
+    yolo?: {
+      military_asset_detected: boolean;
+      military_asset_confidence: number;
+      military_detections: Array<{
+        class_label: string;
+        confidence: number;
+        bbox_xyxy: number[];
+      }>;
+      detections: Array<{
+        class_label: string;
+        confidence: number;
+        bbox_xyxy: number[];
+        is_military_asset: boolean;
+      }>;
+    } | null;
+    military_base_detected: boolean;
+    military_base_score: number;
+    minimum_military_asset_confidence?: number;
+    decision_label: string;
+    score_formula: string;
+  };
 };
+
+type SatelliteModelId =
+  | "convnext_tiny"
+  | "resnet18_torchscript"
+  | "resnet18_state_dict"
+  | "resnet18_checkpoint"
+  | "efficientnet_b0_torchscript"
+  | "efficientnet_b0_state_dict"
+  | "efficientnet_b0_full_model"
+  | "efficientnet_b0_augmented_best";
+type YoloModelId = "best_pt" | "last_pt" | "best_onnx" | "best_torchscript";
+
+const satelliteModels: Array<{ id: SatelliteModelId; label: string; detail: string }> = [
+  {
+    id: "convnext_tiny",
+    label: "ConvNeXt Tiny",
+    detail: "best_convnext_tiny_uydu.pth",
+  },
+  {
+    id: "resnet18_torchscript",
+    label: "ResNet18 TorchScript",
+    detail: "best_resnet18_torchscript_uydu.pt",
+  },
+  {
+    id: "resnet18_state_dict",
+    label: "ResNet18 State Dict",
+    detail: "best_resnet18_state_dict_uydu.pth",
+  },
+  {
+    id: "resnet18_checkpoint",
+    label: "ResNet18 Checkpoint",
+    detail: "best_resnet18_checkpoint_uydu.pth",
+  },
+  {
+    id: "efficientnet_b0_torchscript",
+    label: "EfficientNet B0",
+    detail: "efficientnet_b0_torchscript.pt",
+  },
+  {
+    id: "efficientnet_b0_state_dict",
+    label: "EfficientNet B0 State Dict",
+    detail: "efficientnet_b0_state_dict.pth",
+  },
+  {
+    id: "efficientnet_b0_full_model",
+    label: "EfficientNet B0 Full Model",
+    detail: "efficientnet_b0_full_model.pth",
+  },
+  {
+    id: "efficientnet_b0_augmented_best",
+    label: "EfficientNet B0 Augmented Best",
+    detail: "best_robust_model.pth",
+  },
+];
+
+const yoloModels: Array<{ id: YoloModelId; label: string; detail: string }> = [
+  {
+    id: "best_pt",
+    label: "YOLO Best PT",
+    detail: "yolo models/best.pt",
+  },
+  {
+    id: "last_pt",
+    label: "YOLO Last PT",
+    detail: "yolo models/last.pt",
+  },
+  {
+    id: "best_onnx",
+    label: "YOLO Best ONNX",
+    detail: "yolo models/best.onnx",
+  },
+  {
+    id: "best_torchscript",
+    label: "YOLO TorchScript",
+    detail: "yolo models/best.torchscript",
+  },
+];
 
 const classMeta: Record<string, { label: string; detail: string; tone: string; bar: string }> = {
   AnnualCrop: {
@@ -123,9 +233,13 @@ export default function EuroSatPage() {
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<EuroSatPrediction | null>(null);
+  const [selectedModelId, setSelectedModelId] = useState<SatelliteModelId>("resnet18_torchscript");
+  const [selectedYoloModelId, setSelectedYoloModelId] = useState<YoloModelId>("best_pt");
 
   const previewSrc = useMemo(() => imageBase64 ?? "", [imageBase64]);
   const bestMeta = result ? classMeta[result.prediction_label] : undefined;
+  const selectedModel = satelliteModels.find((model) => model.id === selectedModelId) ?? satelliteModels[0];
+  const selectedYoloModel = yoloModels.find((model) => model.id === selectedYoloModelId) ?? yoloModels[0];
 
   const setImageFile = (file?: File) => {
     setResult(null);
@@ -169,7 +283,7 @@ export default function EuroSatPage() {
       const response = await fetch("/api/eurosat-classify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image_base64: imageBase64 }),
+        body: JSON.stringify({ image_base64: imageBase64, model_id: selectedModelId, yolo_model_id: selectedYoloModelId }),
       });
       const data = await response.json();
       if (!response.ok) {
@@ -191,8 +305,8 @@ export default function EuroSatPage() {
             <Satellite className="h-4 w-4" />
             2025 ML Final - Topic 5
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">EuroSAT Satellite Classifier</h1>
-          <p className="mt-1 text-muted-foreground">CNN image classification for satellite land-cover scenes.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Military Base Detection Pipeline</h1>
+          <p className="mt-1 text-muted-foreground">EuroSAT context classification with conditional YOLO military asset detection.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline" className="w-fit border-cyan-400/50 bg-cyan-400/10 text-cyan-200">
@@ -247,10 +361,58 @@ export default function EuroSatPage() {
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-h-5 truncate text-sm text-muted-foreground">{fileName || "No image selected"}</div>
-                <Button onClick={runPrediction} disabled={!imageBase64 || loading} className="w-full bg-cyan-600 hover:bg-cyan-500 sm:w-auto">
-                  {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ScanSearch className="mr-2 h-4 w-4" />}
-                  Run Prediction
-                </Button>
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+                  <Select
+                    value={selectedModelId}
+                    onValueChange={(value) => {
+                      setSelectedModelId(value as SatelliteModelId);
+                      setResult(null);
+                      setError(null);
+                    }}
+                  >
+                    <SelectTrigger className="w-full min-w-[220px] border-white/10 bg-black/20 sm:w-[220px]">
+                      <SelectValue>{selectedModel.label}</SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {satelliteModels.map((model) => (
+                        <SelectItem key={model.id} value={model.id}>
+                          {model.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button onClick={runPrediction} disabled={!imageBase64 || loading} className="w-full bg-cyan-600 hover:bg-cyan-500 sm:w-auto">
+                    {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ScanSearch className="mr-2 h-4 w-4" />}
+                    Run Prediction
+                  </Button>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-black/20 p-3 text-xs text-muted-foreground">
+                {selectedModel.detail}
+              </div>
+
+              <div className="flex flex-col gap-3 rounded-xl border border-white/10 bg-black/20 p-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="text-xs text-muted-foreground">{selectedYoloModel.detail}</div>
+                <Select
+                  value={selectedYoloModelId}
+                  onValueChange={(value) => {
+                    setSelectedYoloModelId(value as YoloModelId);
+                    setResult(null);
+                    setError(null);
+                  }}
+                >
+                  <SelectTrigger className="w-full min-w-[220px] border-white/10 bg-black/20 sm:w-[220px]">
+                    <SelectValue>{selectedYoloModel.label}</SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {yoloModels.map((model) => (
+                      <SelectItem key={model.id} value={model.id}>
+                        {model.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {error && (
@@ -270,7 +432,7 @@ export default function EuroSatPage() {
                 <Layers3 className="h-5 w-5 text-cyan-300" />
                 Prediction Output
               </CardTitle>
-              <CardDescription>Top land-cover probabilities</CardDescription>
+              <CardDescription>Land-cover probabilities and base decision</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {!result && !loading && (
@@ -289,6 +451,37 @@ export default function EuroSatPage() {
 
               {result && !loading && (
                 <div className="space-y-6 animate-in fade-in duration-500">
+                  {result.pipeline && (
+                    <div
+                      className={`rounded-xl border p-5 ${
+                        result.pipeline.military_base_detected
+                          ? "border-red-400/50 bg-red-500/10 text-red-200"
+                          : "border-emerald-400/50 bg-emerald-500/10 text-emerald-200"
+                      }`}
+                    >
+                      <div className="text-xs font-semibold uppercase">Pipeline Decision</div>
+                      <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                          <div className="text-2xl font-bold text-foreground">
+                            {result.pipeline.military_base_detected ? "Military Base Candidate" : "No Military Base Signal"}
+                          </div>
+                          <div className="mt-1 text-sm text-muted-foreground">
+                            Gate {result.pipeline.stage_1_passed ? "opened" : "closed"} - YOLO{" "}
+                            {result.pipeline.stage_2_ran ? "ran" : "skipped"}
+                          </div>
+                        </div>
+                        <Badge variant="outline" className="w-fit border-white/20 bg-black/20 px-3 py-1 text-foreground">
+                          {(result.pipeline.military_base_score * 100).toFixed(1)}%
+                        </Badge>
+                      </div>
+                      {result.pipeline.stage_2_error && (
+                        <div className="mt-3 rounded-lg border border-amber-400/30 bg-amber-400/10 p-2 text-xs text-amber-200">
+                          {result.pipeline.stage_2_error}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <div className={`rounded-xl border p-5 ${bestMeta?.tone ?? "border-cyan-400/40 bg-cyan-400/10 text-cyan-200"}`}>
                     <div className="text-xs font-semibold uppercase">Predicted Class</div>
                     <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -316,6 +509,36 @@ export default function EuroSatPage() {
                       <div className="mt-1 text-lg font-bold text-foreground">{result.input_size}px</div>
                     </div>
                   </div>
+
+                  <div className="rounded-xl border border-white/10 bg-black/20 p-3 text-xs text-muted-foreground">
+                    {result.model_name}
+                  </div>
+
+                  {result.pipeline?.yolo && (
+                    <div className="space-y-3 rounded-xl border border-white/10 bg-black/20 p-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <div>
+                          <div className="text-sm font-semibold text-foreground">YOLO Military Assets</div>
+                          <div className="text-xs text-muted-foreground">{result.pipeline.yolo.detections.length} total detections</div>
+                        </div>
+                        <Badge variant="outline" className="border-cyan-400/40 bg-cyan-400/10 text-cyan-200">
+                          {(result.pipeline.yolo.military_asset_confidence * 100).toFixed(1)}%
+                        </Badge>
+                      </div>
+                      {result.pipeline.yolo.military_detections.length > 0 ? (
+                        <div className="space-y-2">
+                          {result.pipeline.yolo.military_detections.slice(0, 4).map((item, index) => (
+                            <div key={`${item.class_label}-${index}`} className="flex items-center justify-between gap-3 text-sm">
+                              <span className="truncate text-foreground">{item.class_label}</span>
+                              <span className="shrink-0 text-muted-foreground">{(item.confidence * 100).toFixed(1)}%</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-sm text-muted-foreground">No military vehicle or asset class detected.</div>
+                      )}
+                    </div>
+                  )}
 
                   <div className="space-y-4">
                     {result.top_predictions.map((item) => {

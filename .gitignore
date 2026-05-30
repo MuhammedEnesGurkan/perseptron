@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+__pycache__/
+*.py[cod]
 models/best_convnext_tiny_uydu.pth
 
 # debug
