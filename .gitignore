@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -23,16 +21,15 @@
 # misc
 .DS_Store
 *.pem
-models/best_convnext_tiny_uydu.pth
 
-# debug
+# logs and local server output
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 .server-logs/
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
 
 # vercel
