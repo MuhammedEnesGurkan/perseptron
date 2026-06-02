@@ -33,6 +33,7 @@ export default function BatchAnalysisPage() {
   const [file, setFile] = useState<File | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
   const [results, setResults] = useState<BatchResults | null>(null);
+  const [modelName, setModelName] = useState("lightgbm");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -66,7 +67,7 @@ export default function BatchAnalysisPage() {
       const response = await fetch("/api/batch-predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ rows }),
+        body: JSON.stringify({ rows, model_name: modelName }),
       });
       const data = await response.json();
       setResults(data);
@@ -98,6 +99,21 @@ export default function BatchAnalysisPage() {
                 {file ? file.name : "Click to upload or drag and drop"}
               </div>
               <p className="text-xs text-muted-foreground mt-1">CSV (max 100MB)</p>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-xs font-medium text-muted-foreground">Select AI Model</label>
+              <Select value={modelName} onValueChange={setModelName}>
+                <SelectTrigger className="w-full bg-black/20 border-white/10">
+                  <SelectValue placeholder="Select Model..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="lightgbm">LightGBM (Default)</SelectItem>
+                  <SelectItem value="xgboost">XGBoost</SelectItem>
+                  <SelectItem value="logistic_regression">Logistic Regression</SelectItem>
+                  <SelectItem value="random_forest">Random Forest</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             
             <Button 

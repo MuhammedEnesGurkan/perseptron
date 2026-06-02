@@ -38,3 +38,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# datasets and large files
+/Dataset/
+/credit_default_mlp_model/
+/*.zip
+
+# python cache
+**/__pycache__/
+*.pyc

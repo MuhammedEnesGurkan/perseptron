@@ -5,8 +5,9 @@ type InferenceAction = "predict_ml" | "predict_dl" | "recommend" | "batch" | "pr
 
 export function runInference<T>(action: InferenceAction, data: unknown, modelName?: string): Promise<T> {
   return new Promise((resolve, reject) => {
+    const pythonPath = process.env.PYTHON_PATH || "python";
     const scriptPath = path.join(process.cwd(), "scripts", "inference.py");
-    const child = spawn("python", [scriptPath], {
+    const child = spawn(pythonPath, [scriptPath], {
       cwd: process.cwd(),
       stdio: ["pipe", "pipe", "pipe"],
     });

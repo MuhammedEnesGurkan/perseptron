@@ -261,8 +261,8 @@ def recommendation(record):
     }
 
 
-def batch(records):
-    ml_results = predict_ml(records)
+def batch(records, model_name=None):
+    ml_results = predict_ml(records, model_name)
     dl_results = predict_dl(records)
     rows = []
     distribution = {}
@@ -397,7 +397,7 @@ def main():
     elif action == "recommend":
         print(json.dumps(recommendation(data)))
     elif action == "batch":
-        print(json.dumps(batch(data or [])))
+        print(json.dumps(batch(data or [], payload.get("model_name"))))
     elif action == "predict_resnet":
         print(json.dumps(predict_resnet(data or {})))
     elif action == "predict_satellite":

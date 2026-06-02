@@ -166,6 +166,20 @@ export default function RiskAnalysisPage() {
                       </SelectContent>
                     </Select>
                   </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="model_name">AI Prediction Model</Label>
+                    <Select name="model_name" defaultValue="lightgbm">
+                      <SelectTrigger className="bg-black/20 border-white/10">
+                        <SelectValue placeholder="Select Model..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="lightgbm">LightGBM (Default)</SelectItem>
+                        <SelectItem value="xgboost">XGBoost</SelectItem>
+                        <SelectItem value="logistic_regression">Logistic Regression</SelectItem>
+                        <SelectItem value="random_forest">Random Forest</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </form>
             </CardContent>
