@@ -1,7 +1,11 @@
 import { spawn } from "node:child_process";
 import path from "node:path";
 
-type InferenceAction = "predict_ml" | "predict_dl" | "recommend" | "batch" | "predict_resnet" | "predict_satellite";
+type InferenceAction =
+  | "predict_ml"
+  | "predict_dl"
+  | "recommend"
+  | "batch";
 
 export function runInference<T>(action: InferenceAction, data: unknown, modelName?: string): Promise<T> {
   return new Promise((resolve, reject) => {

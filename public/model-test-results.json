@@ -1,0 +1,3505 @@
+{
+  "generated_at": "2026-06-01T20:29:20.646198+00:00",
+  "eurosat": {
+    "dataset": {
+      "path": "euro sat ui\\test",
+      "sample_count": 20,
+      "samples_per_class": {
+        "AnnualCrop": 2,
+        "Forest": 2,
+        "HerbaceousVegetation": 2,
+        "Highway": 2,
+        "Industrial": 2,
+        "Pasture": 2,
+        "PermanentCrop": 2,
+        "Residential": 2,
+        "River": 2,
+        "SeaLake": 2
+      },
+      "note": "Small manually curated test folder. Use a larger held-out dataset for production claims."
+    },
+    "models": [
+      {
+        "model_id": "convnext_tiny",
+        "model_name": "EuroSAT ConvNeXt Tiny",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 0.55,
+          "accuracy_percent": 55.0,
+          "f1_macro": 0.47381,
+          "precision_macro": 0.523333,
+          "recall_macro": 0.55,
+          "correct": 11,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 0,
+            "total": 2,
+            "accuracy_percent": 0.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "PermanentCrop": {
+            "correct": 0,
+            "total": 2,
+            "accuracy_percent": 0.0
+          },
+          "Residential": {
+            "correct": 0,
+            "total": 2,
+            "accuracy_percent": 0.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.494211,
+            "correct": false
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.288889,
+            "correct": false
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.494081,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.565542,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.482826,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "River",
+            "confidence": 0.445536,
+            "correct": false
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.745644,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.693979,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.611305,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.405684,
+            "correct": false
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.35039,
+            "correct": false
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.371232,
+            "correct": false
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.370984,
+            "correct": false
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.355279,
+            "correct": false
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.695984,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.375199,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.488101,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "River",
+            "confidence": 0.744119,
+            "correct": false
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.42492,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.488874,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "resnet18_torchscript",
+        "model_name": "EuroSAT ResNet18 TorchScript",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 0.75,
+          "accuracy_percent": 75.0,
+          "f1_macro": 0.713333,
+          "precision_macro": 0.766667,
+          "recall_macro": 0.75,
+          "correct": 15,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "PermanentCrop": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "Residential": {
+            "correct": 0,
+            "total": 2,
+            "accuracy_percent": 0.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "SeaLake",
+            "confidence": 0.43368,
+            "correct": false
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.842929,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.789069,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.893678,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.750133,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.505539,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.800676,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.898732,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.673733,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.464064,
+            "correct": false
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.843955,
+            "correct": false
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.675736,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Industrial",
+            "confidence": 0.76512,
+            "correct": false
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Industrial",
+            "confidence": 0.890912,
+            "correct": false
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.75571,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.402189,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.857034,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.848103,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.897473,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.72542,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "resnet18_state_dict",
+        "model_name": "EuroSAT ResNet18 State Dict",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 0.75,
+          "accuracy_percent": 75.0,
+          "f1_macro": 0.713333,
+          "precision_macro": 0.766667,
+          "recall_macro": 0.75,
+          "correct": 15,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "PermanentCrop": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "Residential": {
+            "correct": 0,
+            "total": 2,
+            "accuracy_percent": 0.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "SeaLake",
+            "confidence": 0.43368,
+            "correct": false
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.842929,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.789069,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.893678,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.750133,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.505539,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.800676,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.898732,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.673733,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.464064,
+            "correct": false
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.843955,
+            "correct": false
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.675736,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Industrial",
+            "confidence": 0.76512,
+            "correct": false
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Industrial",
+            "confidence": 0.890912,
+            "correct": false
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.75571,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.402189,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.857034,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.848103,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.897473,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.72542,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "resnet18_checkpoint",
+        "model_name": "EuroSAT ResNet18 Checkpoint",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 0.75,
+          "accuracy_percent": 75.0,
+          "f1_macro": 0.713333,
+          "precision_macro": 0.766667,
+          "recall_macro": 0.75,
+          "correct": 15,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "PermanentCrop": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "Residential": {
+            "correct": 0,
+            "total": 2,
+            "accuracy_percent": 0.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "SeaLake",
+            "confidence": 0.43368,
+            "correct": false
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.842929,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.789069,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.893678,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.750133,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.505539,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.800676,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.898732,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.673733,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.464064,
+            "correct": false
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.843955,
+            "correct": false
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.675736,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Industrial",
+            "confidence": 0.76512,
+            "correct": false
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Industrial",
+            "confidence": 0.890912,
+            "correct": false
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.75571,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.402189,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.857034,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.848103,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.897473,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.72542,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "efficientnet_b0_torchscript",
+        "model_name": "EuroSAT EfficientNet B0 TorchScript",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 1.0,
+          "accuracy_percent": 100.0,
+          "f1_macro": 1.0,
+          "precision_macro": 1.0,
+          "recall_macro": 1.0,
+          "correct": 20,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "PermanentCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Residential": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.905394,
+            "correct": true
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.907987,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.900425,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.923575,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.907852,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.905123,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.90615,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.907163,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.89211,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.882041,
+            "correct": true
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.915317,
+            "correct": true
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.90095,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.904144,
+            "correct": true
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.917857,
+            "correct": true
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.902831,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.902936,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.911289,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.932663,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.910915,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.913072,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "efficientnet_b0_state_dict",
+        "model_name": "EuroSAT EfficientNet B0 State Dict",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 1.0,
+          "accuracy_percent": 100.0,
+          "f1_macro": 1.0,
+          "precision_macro": 1.0,
+          "recall_macro": 1.0,
+          "correct": 20,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "PermanentCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Residential": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.905394,
+            "correct": true
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.907987,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.900425,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.923575,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.907852,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.905123,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.90615,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.907163,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.89211,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.882041,
+            "correct": true
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.915317,
+            "correct": true
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.90095,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.904144,
+            "correct": true
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.917857,
+            "correct": true
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.902831,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.902936,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.911289,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.932663,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.910915,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.913072,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "efficientnet_b0_full_model",
+        "model_name": "EuroSAT EfficientNet B0 Full Model",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 1.0,
+          "accuracy_percent": 100.0,
+          "f1_macro": 1.0,
+          "precision_macro": 1.0,
+          "recall_macro": 1.0,
+          "correct": 20,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "PermanentCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Residential": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.905394,
+            "correct": true
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.907987,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.900425,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.923575,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.907852,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.905123,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.90615,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.907163,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.89211,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.882041,
+            "correct": true
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.915317,
+            "correct": true
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.90095,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.904144,
+            "correct": true
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.917857,
+            "correct": true
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.902831,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.902936,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.911289,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.932663,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.910915,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.913072,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "efficientnet_b0_robust",
+        "model_name": "EuroSAT EfficientNet B0 Robust (Augmented)",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 1.0,
+          "accuracy_percent": 100.0,
+          "f1_macro": 1.0,
+          "precision_macro": 1.0,
+          "recall_macro": 1.0,
+          "correct": 20,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "PermanentCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Residential": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.899764,
+            "correct": true
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.897158,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.890497,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.872507,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.907733,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.878515,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.890364,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.897387,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.894515,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.852887,
+            "correct": true
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.87011,
+            "correct": true
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.872089,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.896688,
+            "correct": true
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.910686,
+            "correct": true
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.868364,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.873641,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.915936,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.822804,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.83604,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.838836,
+            "correct": true
+          }
+        ]
+      },
+      {
+        "model_id": "ensemble_top3_sum",
+        "model_name": "EuroSAT 3 Model Ensemble",
+        "status": "ok",
+        "metrics": {
+          "accuracy": 0.95,
+          "accuracy_percent": 95.0,
+          "f1_macro": 0.946667,
+          "precision_macro": 0.966667,
+          "recall_macro": 0.95,
+          "correct": 19,
+          "total": 20,
+          "confusion_matrix": {
+            "labels": [
+              "AnnualCrop",
+              "Forest",
+              "HerbaceousVegetation",
+              "Highway",
+              "Industrial",
+              "Pasture",
+              "PermanentCrop",
+              "Residential",
+              "River",
+              "SeaLake"
+            ],
+            "values": [
+              [
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            ]
+          }
+        },
+        "per_class": {
+          "AnnualCrop": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Forest": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "HerbaceousVegetation": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Highway": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Industrial": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "Pasture": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "PermanentCrop": {
+            "correct": 1,
+            "total": 2,
+            "accuracy_percent": 50.0
+          },
+          "Residential": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "River": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          },
+          "SeaLake": {
+            "correct": 2,
+            "total": 2,
+            "accuracy_percent": 100.0
+          }
+        },
+        "predictions": [
+          {
+            "filename": "f164x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.501227,
+            "correct": true
+          },
+          {
+            "filename": "f264x.jpg",
+            "expected_label": "Forest",
+            "predicted_label": "Forest",
+            "confidence": 0.721152,
+            "correct": true
+          },
+          {
+            "filename": "hv1.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.856491,
+            "correct": true
+          },
+          {
+            "filename": "hv2.jpg",
+            "expected_label": "HerbaceousVegetation",
+            "predicted_label": "HerbaceousVegetation",
+            "confidence": 0.915249,
+            "correct": true
+          },
+          {
+            "filename": "hw1.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.854153,
+            "correct": true
+          },
+          {
+            "filename": "hw2.jpg",
+            "expected_label": "Highway",
+            "predicted_label": "Highway",
+            "confidence": 0.575965,
+            "correct": true
+          },
+          {
+            "filename": "i1.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.923148,
+            "correct": true
+          },
+          {
+            "filename": "i2.jpg",
+            "expected_label": "Industrial",
+            "predicted_label": "Industrial",
+            "confidence": 0.926293,
+            "correct": true
+          },
+          {
+            "filename": "p1.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.827268,
+            "correct": true
+          },
+          {
+            "filename": "p2.jpg",
+            "expected_label": "Pasture",
+            "predicted_label": "Pasture",
+            "confidence": 0.555957,
+            "correct": true
+          },
+          {
+            "filename": "pc1.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.502587,
+            "correct": false
+          },
+          {
+            "filename": "pc2.jpg",
+            "expected_label": "PermanentCrop",
+            "predicted_label": "PermanentCrop",
+            "confidence": 0.748553,
+            "correct": true
+          },
+          {
+            "filename": "r1.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.396362,
+            "correct": true
+          },
+          {
+            "filename": "r2.jpg",
+            "expected_label": "Residential",
+            "predicted_label": "Residential",
+            "confidence": 0.350035,
+            "correct": true
+          },
+          {
+            "filename": "ri1.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.905448,
+            "correct": true
+          },
+          {
+            "filename": "ri2.jpg",
+            "expected_label": "River",
+            "predicted_label": "River",
+            "confidence": 0.691213,
+            "correct": true
+          },
+          {
+            "filename": "sl1.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.887254,
+            "correct": true
+          },
+          {
+            "filename": "sl2.jpg",
+            "expected_label": "SeaLake",
+            "predicted_label": "SeaLake",
+            "confidence": 0.687425,
+            "correct": true
+          },
+          {
+            "filename": "t164px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.894753,
+            "correct": true
+          },
+          {
+            "filename": "t264px.jpg",
+            "expected_label": "AnnualCrop",
+            "predicted_label": "AnnualCrop",
+            "confidence": 0.870751,
+            "correct": true
+          }
+        ]
+      }
+    ]
+  },
+  "credit_default": {
+    "dataset": {
+      "path": "kreditveriseti\\train.csv",
+      "sample_count": 593994,
+      "target": "loan_paid_back",
+      "scope": "in_sample_full_labeled_dataset",
+      "note": "kreditveriseti/test.csv has no target column. Metrics below are measured on the full labeled train.csv and must not be presented as unseen hold-out performance. Stored validation metrics are included when available."
+    },
+    "models": [
+      {
+        "model_id": "app_xgboost",
+        "model_name": "App Package Xgboost",
+        "status": "ok",
+        "source": "models/credit_default_xgb_lgbm_model_package.pkl",
+        "target": "loan_paid_back",
+        "threshold": 0.65,
+        "metrics": {
+          "accuracy": 0.899549,
+          "accuracy_percent": 89.95,
+          "f1_macro": 0.837452,
+          "precision_macro": 0.852441,
+          "recall_macro": 0.824731,
+          "correct": 534327,
+          "total": 593994,
+          "confusion_matrix": {
+            "labels": [
+              0,
+              1
+            ],
+            "values": [
+              [
+                83595,
+                35905
+              ],
+              [
+                23762,
+                450732
+              ]
+            ]
+          },
+          "roc_auc": 0.922582
+        },
+        "stored_validation_metrics": {
+          "roc_auc": 0.918953,
+          "pr_auc_paid_class": 0.974055,
+          "f1_paid_class": 0.942298
+        }
+      },
+      {
+        "model_id": "app_lightgbm",
+        "model_name": "App Package Lightgbm",
+        "status": "ok",
+        "source": "models/credit_default_xgb_lgbm_model_package.pkl",
+        "target": "loan_paid_back",
+        "threshold": 0.65,
+        "metrics": {
+          "accuracy": 0.901236,
+          "accuracy_percent": 90.12,
+          "f1_macro": 0.840397,
+          "precision_macro": 0.854939,
+          "recall_macro": 0.827981,
+          "correct": 535329,
+          "total": 593994,
+          "confusion_matrix": {
+            "labels": [
+              0,
+              1
+            ],
+            "values": [
+              [
+                84296,
+                35204
+              ],
+              [
+                23461,
+                451033
+              ]
+            ]
+          },
+          "roc_auc": 0.926616
+        },
+        "stored_validation_metrics": {
+          "roc_auc": 0.920522,
+          "pr_auc_paid_class": 0.974595,
+          "f1_paid_class": 0.942527
+        }
+      },
+      {
+        "model_id": "credit_mlp_safe",
+        "model_name": "CreditMLPSafe",
+        "status": "ok",
+        "source": "models/credit_default_mlp_model.pt",
+        "target": "loan_paid_back",
+        "threshold": 0.65,
+        "metrics": {
+          "accuracy": 0.757607,
+          "accuracy_percent": 75.76,
+          "f1_macro": 0.710929,
+          "precision_macro": 0.70473,
+          "recall_macro": 0.804963,
+          "correct": 450014,
+          "total": 593994,
+          "confusion_matrix": {
+            "labels": [
+              0,
+              1
+            ],
+            "values": [
+              [
+                105662,
+                13838
+              ],
+              [
+                130142,
+                344352
+              ]
+            ]
+          },
+          "roc_auc": 0.913746
+        },
+        "stored_validation_metrics": {
+          "roc_auc": 0.9121185670596896
+        }
+      },
+      {
+        "model_id": "optimized_xgboost",
+        "model_name": "Optimized Xgboost",
+        "status": "ok",
+        "source": "yenimodel/xgb_model.pkl",
+        "target": "default_target",
+        "threshold": 0.5,
+        "metrics": {
+          "accuracy": 0.86999,
+          "accuracy_percent": 87.0,
+          "f1_macro": 0.813892,
+          "precision_macro": 0.794105,
+          "recall_macro": 0.842951,
+          "correct": 516769,
+          "total": 593994,
+          "confusion_matrix": {
+            "labels": [
+              0,
+              1
+            ],
+            "values": [
+              [
+                421443,
+                53051
+              ],
+              [
+                24174,
+                95326
+              ]
+            ]
+          },
+          "roc_auc": 0.925762
+        }
+      },
+      {
+        "model_id": "optimized_lightgbm",
+        "model_name": "Optimized Lightgbm",
+        "status": "ok",
+        "source": "yenimodel/lgbm_model.pkl",
+        "target": "default_target",
+        "threshold": 0.5,
+        "metrics": {
+          "accuracy": 0.874367,
+          "accuracy_percent": 87.44,
+          "f1_macro": 0.81914,
+          "precision_macro": 0.799978,
+          "recall_macro": 0.846442,
+          "correct": 519369,
+          "total": 593994,
+          "confusion_matrix": {
+            "labels": [
+              0,
+              1
+            ],
+            "values": [
+              [
+                423803,
+                50691
+              ],
+              [
+                23934,
+                95566
+              ]
+            ]
+          },
+          "roc_auc": 0.928316
+        }
+      }
+    ]
+  },
+  "charts": {
+    "eurosat_accuracy": [
+      {
+        "model_id": "convnext_tiny",
+        "model_name": "EuroSAT ConvNeXt Tiny",
+        "accuracy_percent": 55.0
+      },
+      {
+        "model_id": "resnet18_torchscript",
+        "model_name": "EuroSAT ResNet18 TorchScript",
+        "accuracy_percent": 75.0
+      },
+      {
+        "model_id": "resnet18_state_dict",
+        "model_name": "EuroSAT ResNet18 State Dict",
+        "accuracy_percent": 75.0
+      },
+      {
+        "model_id": "resnet18_checkpoint",
+        "model_name": "EuroSAT ResNet18 Checkpoint",
+        "accuracy_percent": 75.0
+      },
+      {
+        "model_id": "efficientnet_b0_torchscript",
+        "model_name": "EuroSAT EfficientNet B0 TorchScript",
+        "accuracy_percent": 100.0
+      },
+      {
+        "model_id": "efficientnet_b0_state_dict",
+        "model_name": "EuroSAT EfficientNet B0 State Dict",
+        "accuracy_percent": 100.0
+      },
+      {
+        "model_id": "efficientnet_b0_full_model",
+        "model_name": "EuroSAT EfficientNet B0 Full Model",
+        "accuracy_percent": 100.0
+      },
+      {
+        "model_id": "efficientnet_b0_robust",
+        "model_name": "EuroSAT EfficientNet B0 Robust (Augmented)",
+        "accuracy_percent": 100.0
+      },
+      {
+        "model_id": "ensemble_top3_sum",
+        "model_name": "EuroSAT 3 Model Ensemble",
+        "accuracy_percent": 95.0
+      }
+    ],
+    "eurosat_f1_macro": [
+      {
+        "model_id": "convnext_tiny",
+        "model_name": "EuroSAT ConvNeXt Tiny",
+        "f1_macro": 0.47381
+      },
+      {
+        "model_id": "resnet18_torchscript",
+        "model_name": "EuroSAT ResNet18 TorchScript",
+        "f1_macro": 0.713333
+      },
+      {
+        "model_id": "resnet18_state_dict",
+        "model_name": "EuroSAT ResNet18 State Dict",
+        "f1_macro": 0.713333
+      },
+      {
+        "model_id": "resnet18_checkpoint",
+        "model_name": "EuroSAT ResNet18 Checkpoint",
+        "f1_macro": 0.713333
+      },
+      {
+        "model_id": "efficientnet_b0_torchscript",
+        "model_name": "EuroSAT EfficientNet B0 TorchScript",
+        "f1_macro": 1.0
+      },
+      {
+        "model_id": "efficientnet_b0_state_dict",
+        "model_name": "EuroSAT EfficientNet B0 State Dict",
+        "f1_macro": 1.0
+      },
+      {
+        "model_id": "efficientnet_b0_full_model",
+        "model_name": "EuroSAT EfficientNet B0 Full Model",
+        "f1_macro": 1.0
+      },
+      {
+        "model_id": "efficientnet_b0_robust",
+        "model_name": "EuroSAT EfficientNet B0 Robust (Augmented)",
+        "f1_macro": 1.0
+      },
+      {
+        "model_id": "ensemble_top3_sum",
+        "model_name": "EuroSAT 3 Model Ensemble",
+        "f1_macro": 0.946667
+      }
+    ],
+    "credit_default_accuracy": [
+      {
+        "model_id": "app_xgboost",
+        "model_name": "App Package Xgboost",
+        "accuracy_percent": 89.95
+      },
+      {
+        "model_id": "app_lightgbm",
+        "model_name": "App Package Lightgbm",
+        "accuracy_percent": 90.12
+      },
+      {
+        "model_id": "credit_mlp_safe",
+        "model_name": "CreditMLPSafe",
+        "accuracy_percent": 75.76
+      },
+      {
+        "model_id": "optimized_xgboost",
+        "model_name": "Optimized Xgboost",
+        "accuracy_percent": 87.0
+      },
+      {
+        "model_id": "optimized_lightgbm",
+        "model_name": "Optimized Lightgbm",
+        "accuracy_percent": 87.44
+      }
+    ],
+    "credit_default_f1_macro": [
+      {
+        "model_id": "app_xgboost",
+        "model_name": "App Package Xgboost",
+        "f1_macro": 0.837452
+      },
+      {
+        "model_id": "app_lightgbm",
+        "model_name": "App Package Lightgbm",
+        "f1_macro": 0.840397
+      },
+      {
+        "model_id": "credit_mlp_safe",
+        "model_name": "CreditMLPSafe",
+        "f1_macro": 0.710929
+      },
+      {
+        "model_id": "optimized_xgboost",
+        "model_name": "Optimized Xgboost",
+        "f1_macro": 0.813892
+      },
+      {
+        "model_id": "optimized_lightgbm",
+        "model_name": "Optimized Lightgbm",
+        "f1_macro": 0.81914
+      }
+    ],
+    "credit_default_roc_auc": [
+      {
+        "model_id": "app_xgboost",
+        "model_name": "App Package Xgboost",
+        "roc_auc": 0.922582
+      },
+      {
+        "model_id": "app_lightgbm",
+        "model_name": "App Package Lightgbm",
+        "roc_auc": 0.926616
+      },
+      {
+        "model_id": "credit_mlp_safe",
+        "model_name": "CreditMLPSafe",
+        "roc_auc": 0.913746
+      },
+      {
+        "model_id": "optimized_xgboost",
+        "model_name": "Optimized Xgboost",
+        "roc_auc": 0.925762
+      },
+      {
+        "model_id": "optimized_lightgbm",
+        "model_name": "Optimized Lightgbm",
+        "roc_auc": 0.928316
+      }
+    ]
+  },
+  "excluded_models": [
+    {
+      "model": "PlanMLP",
+      "reason": "Payment-plan recommendation model, not a credit-default classifier."
+    },
+    {
+      "model": "YOLO variants",
+      "reason": "Military object detectors, not EuroSAT land-use classifiers."
+    },
+    {
+      "model": "payment_optimization_dl_model",
+      "reason": "Payment optimization model, not a credit-default classifier."
+    }
+  ]
+}

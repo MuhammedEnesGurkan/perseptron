@@ -1,0 +1,394 @@
+{
+  "dataset": {
+    "test_csv": "kreditveriseti\\test.csv",
+    "test_rows": 254569,
+    "test_has_labels": false,
+    "train_csv": "kreditveriseti\\train.csv",
+    "train_rows": 593994,
+    "train_target": "loan_paid_back (1=paid_back, 0=default_or_not_paid_back)",
+    "threshold_paid": 0.65,
+    "note": "kreditveriseti/test.csv does not contain loan_paid_back, so success metrics are measured on train.csv. test.csv results are prediction/risk distributions only."
+  },
+  "models": {
+    "lightgbm": {
+      "model_name": "Lightgbm",
+      "source": "models/credit_default_xgb_lgbm_model_package.pkl",
+      "test_csv_batch_summary": {
+        "predicted_paid_back_count": 208733,
+        "predicted_default_count": 45836,
+        "predicted_paid_back_rate_percent": 81.995,
+        "predicted_default_rate_percent": 18.005,
+        "avg_paid_back_probability_percent": 79.979,
+        "avg_default_probability_percent": 20.021,
+        "median_default_probability_percent": 6.886,
+        "p90_default_probability_percent": 85.585,
+        "p95_default_probability_percent": 98.497,
+        "risk_band_counts": {
+          "LOW": 198441,
+          "MEDIUM": 21482,
+          "HIGH": 7113,
+          "CRITICAL": 27533
+        },
+        "risk_band_rates_percent": {
+          "LOW": 77.952,
+          "MEDIUM": 8.439,
+          "HIGH": 2.794,
+          "CRITICAL": 10.816
+        },
+        "top_5_highest_risk_ids": [
+          {
+            "id": 847389,
+            "default_probability_percent": 99.929,
+            "paid_back_probability_percent": 0.071,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 779148,
+            "default_probability_percent": 99.923,
+            "paid_back_probability_percent": 0.077,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 728643,
+            "default_probability_percent": 99.921,
+            "paid_back_probability_percent": 0.079,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 655009,
+            "default_probability_percent": 99.919,
+            "paid_back_probability_percent": 0.081,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 837741,
+            "default_probability_percent": 99.919,
+            "paid_back_probability_percent": 0.081,
+            "risk_band": "CRITICAL"
+          }
+        ]
+      },
+      "train_reference_metrics": {
+        "accuracy": 0.901236,
+        "roc_auc": 0.926616,
+        "pr_auc_paid_class": 0.977257,
+        "f1_paid": 0.938937,
+        "precision_paid": 0.927599,
+        "recall_paid": 0.950556,
+        "f1_default": 0.741856,
+        "precision_default": 0.782279,
+        "recall_default": 0.705406,
+        "confusion_matrix_labels_0_default_1_paid": {
+          "tn_default_correct": 84296,
+          "fp_default_as_paid": 35204,
+          "fn_paid_as_default": 23461,
+          "tp_paid_correct": 451033
+        }
+      }
+    },
+    "xgboost": {
+      "model_name": "Xgboost",
+      "source": "models/credit_default_xgb_lgbm_model_package.pkl",
+      "test_csv_batch_summary": {
+        "predicted_paid_back_count": 208865,
+        "predicted_default_count": 45704,
+        "predicted_paid_back_rate_percent": 82.047,
+        "predicted_default_rate_percent": 17.953,
+        "avg_paid_back_probability_percent": 79.975,
+        "avg_default_probability_percent": 20.025,
+        "median_default_probability_percent": 6.954,
+        "p90_default_probability_percent": 85.48,
+        "p95_default_probability_percent": 98.483,
+        "risk_band_counts": {
+          "LOW": 198318,
+          "MEDIUM": 22090,
+          "HIGH": 6730,
+          "CRITICAL": 27431
+        },
+        "risk_band_rates_percent": {
+          "LOW": 77.903,
+          "MEDIUM": 8.677,
+          "HIGH": 2.644,
+          "CRITICAL": 10.775
+        },
+        "top_5_highest_risk_ids": [
+          {
+            "id": 655009,
+            "default_probability_percent": 99.902,
+            "paid_back_probability_percent": 0.098,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 643298,
+            "default_probability_percent": 99.9,
+            "paid_back_probability_percent": 0.1,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 639062,
+            "default_probability_percent": 99.898,
+            "paid_back_probability_percent": 0.102,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 749744,
+            "default_probability_percent": 99.897,
+            "paid_back_probability_percent": 0.103,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 639613,
+            "default_probability_percent": 99.894,
+            "paid_back_probability_percent": 0.106,
+            "risk_band": "CRITICAL"
+          }
+        ]
+      },
+      "train_reference_metrics": {
+        "accuracy": 0.899549,
+        "roc_auc": 0.922582,
+        "pr_auc_paid_class": 0.975577,
+        "f1_paid": 0.93792,
+        "precision_paid": 0.926218,
+        "recall_paid": 0.949921,
+        "f1_default": 0.736984,
+        "precision_default": 0.778664,
+        "recall_default": 0.69954,
+        "confusion_matrix_labels_0_default_1_paid": {
+          "tn_default_correct": 83595,
+          "fp_default_as_paid": 35905,
+          "fn_paid_as_default": 23762,
+          "tp_paid_correct": 450732
+        }
+      }
+    },
+    "logistic_regression": {
+      "model_name": "Logistic Regression",
+      "source": "models/credit_default_xgb_lgbm_model_package.pkl",
+      "test_csv_batch_summary": {
+        "predicted_paid_back_count": 210428,
+        "predicted_default_count": 44141,
+        "predicted_paid_back_rate_percent": 82.66,
+        "predicted_default_rate_percent": 17.34,
+        "avg_paid_back_probability_percent": 79.933,
+        "avg_default_probability_percent": 20.067,
+        "median_default_probability_percent": 7.117,
+        "p90_default_probability_percent": 85.085,
+        "p95_default_probability_percent": 96.154,
+        "risk_band_counts": {
+          "LOW": 200909,
+          "MEDIUM": 17460,
+          "HIGH": 7019,
+          "CRITICAL": 29181
+        },
+        "risk_band_rates_percent": {
+          "LOW": 78.921,
+          "MEDIUM": 6.859,
+          "HIGH": 2.757,
+          "CRITICAL": 11.463
+        },
+        "top_5_highest_risk_ids": [
+          {
+            "id": 614782,
+            "default_probability_percent": 99.989,
+            "paid_back_probability_percent": 0.011,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 771328,
+            "default_probability_percent": 99.987,
+            "paid_back_probability_percent": 0.013,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 642606,
+            "default_probability_percent": 99.986,
+            "paid_back_probability_percent": 0.014,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 596900,
+            "default_probability_percent": 99.986,
+            "paid_back_probability_percent": 0.014,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 779929,
+            "default_probability_percent": 99.981,
+            "paid_back_probability_percent": 0.019,
+            "risk_band": "CRITICAL"
+          }
+        ]
+      },
+      "train_reference_metrics": {
+        "accuracy": 0.894282,
+        "roc_auc": 0.910652,
+        "pr_auc_paid_class": 0.971059,
+        "f1_paid": 0.934937,
+        "precision_paid": 0.919537,
+        "recall_paid": 0.950861,
+        "f1_default": 0.718196,
+        "precision_default": 0.774367,
+        "recall_default": 0.669623,
+        "confusion_matrix_labels_0_default_1_paid": {
+          "tn_default_correct": 80020,
+          "fp_default_as_paid": 39480,
+          "fn_paid_as_default": 23316,
+          "tp_paid_correct": 451178
+        }
+      }
+    },
+    "random_forest": {
+      "model_name": "Random Forest",
+      "source": "models/credit_default_xgb_lgbm_model_package.pkl",
+      "test_csv_batch_summary": {
+        "predicted_paid_back_count": 213746,
+        "predicted_default_count": 40823,
+        "predicted_paid_back_rate_percent": 83.964,
+        "predicted_default_rate_percent": 16.036,
+        "avg_paid_back_probability_percent": 79.942,
+        "avg_default_probability_percent": 20.058,
+        "median_default_probability_percent": 9.853,
+        "p90_default_probability_percent": 75.339,
+        "p95_default_probability_percent": 90.16,
+        "risk_band_counts": {
+          "LOW": 202222,
+          "MEDIUM": 22192,
+          "HIGH": 4641,
+          "CRITICAL": 25514
+        },
+        "risk_band_rates_percent": {
+          "LOW": 79.437,
+          "MEDIUM": 8.717,
+          "HIGH": 1.823,
+          "CRITICAL": 10.022
+        },
+        "top_5_highest_risk_ids": [
+          {
+            "id": 753670,
+            "default_probability_percent": 97.535,
+            "paid_back_probability_percent": 2.465,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 729698,
+            "default_probability_percent": 97.486,
+            "paid_back_probability_percent": 2.514,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 773997,
+            "default_probability_percent": 97.446,
+            "paid_back_probability_percent": 2.554,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 684070,
+            "default_probability_percent": 97.399,
+            "paid_back_probability_percent": 2.601,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 819299,
+            "default_probability_percent": 97.363,
+            "paid_back_probability_percent": 2.637,
+            "risk_band": "CRITICAL"
+          }
+        ]
+      },
+      "train_reference_metrics": {
+        "accuracy": 0.899558,
+        "roc_auc": 0.912669,
+        "pr_auc_paid_class": 0.97138,
+        "f1_paid": 0.938688,
+        "precision_paid": 0.915995,
+        "recall_paid": 0.962535,
+        "f1_default": 0.722363,
+        "precision_default": 0.813643,
+        "recall_default": 0.649498,
+        "confusion_matrix_labels_0_default_1_paid": {
+          "tn_default_correct": 77615,
+          "fp_default_as_paid": 41885,
+          "fn_paid_as_default": 17777,
+          "tp_paid_correct": 456717
+        }
+      }
+    },
+    "fico_credit_score_baseline": {
+      "model_name": "FICO/Credit Score Baseline",
+      "source": "credit_score only, normalized from 300..850",
+      "test_csv_batch_summary": {
+        "predicted_paid_back_count": 173526,
+        "predicted_default_count": 81043,
+        "predicted_paid_back_rate_percent": 68.165,
+        "predicted_default_rate_percent": 31.835,
+        "avg_paid_back_probability_percent": 69.28,
+        "avg_default_probability_percent": 30.72,
+        "median_default_probability_percent": 30.364,
+        "p90_default_probability_percent": 44.182,
+        "p95_default_probability_percent": 48.727,
+        "risk_band_counts": {
+          "LOW": 75504,
+          "MEDIUM": 168962,
+          "HIGH": 10101,
+          "CRITICAL": 2
+        },
+        "risk_band_rates_percent": {
+          "LOW": 29.66,
+          "MEDIUM": 66.372,
+          "HIGH": 3.968,
+          "CRITICAL": 0.001
+        },
+        "top_5_highest_risk_ids": [
+          {
+            "id": 698111,
+            "default_probability_percent": 82.727,
+            "paid_back_probability_percent": 17.273,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 605172,
+            "default_probability_percent": 76.182,
+            "paid_back_probability_percent": 23.818,
+            "risk_band": "CRITICAL"
+          },
+          {
+            "id": 813544,
+            "default_probability_percent": 74.727,
+            "paid_back_probability_percent": 25.273,
+            "risk_band": "HIGH"
+          },
+          {
+            "id": 618996,
+            "default_probability_percent": 74.182,
+            "paid_back_probability_percent": 25.818,
+            "risk_band": "HIGH"
+          },
+          {
+            "id": 795398,
+            "default_probability_percent": 74.0,
+            "paid_back_probability_percent": 26.0,
+            "risk_band": "HIGH"
+          }
+        ]
+      },
+      "train_reference_metrics": {
+        "accuracy": 0.685244,
+        "roc_auc": 0.671153,
+        "pr_auc_paid_class": 0.884967,
+        "f1_paid": 0.787392,
+        "precision_paid": 0.855077,
+        "recall_paid": 0.729636,
+        "f1_default": 0.394175,
+        "precision_default": 0.321629,
+        "recall_default": 0.508979,
+        "confusion_matrix_labels_0_default_1_paid": {
+          "tn_default_correct": 60823,
+          "fp_default_as_paid": 58677,
+          "fn_paid_as_default": 128286,
+          "tp_paid_correct": 346208
+        }
+      }
+    }
+  }
+}

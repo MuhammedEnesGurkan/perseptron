@@ -1,0 +1,10 @@
+joblib
+numpy
+pandas
+Pillow
+torch
+torchvision
+timm
+ultralytics
+onnx
+onnxruntime

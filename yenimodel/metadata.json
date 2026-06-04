@@ -1,0 +1,102 @@
+{
+    "target": "loan_paid_back",
+    "ml_target_used": "default_target = 1 - loan_paid_back",
+    "prediction_meaning": {
+        "default_probability": "temerrüt olasılığı",
+        "paid_back_probability": "krediyi geri ödeme olasılığı"
+    },
+    "risk_threshold": 0.5,
+    "feature_names": [
+        "annual_income",
+        "debt_to_income_ratio",
+        "credit_score",
+        "loan_amount",
+        "interest_rate",
+        "loan_to_income_ratio",
+        "interest_burden",
+        "dti_interest_risk",
+        "low_credit_score_flag",
+        "gender",
+        "marital_status",
+        "education_level",
+        "employment_status",
+        "loan_purpose",
+        "grade_subgrade"
+    ],
+    "model_input_columns": [
+        "annual_income",
+        "debt_to_income_ratio",
+        "credit_score",
+        "loan_amount",
+        "interest_rate",
+        "gender",
+        "marital_status",
+        "education_level",
+        "employment_status",
+        "loan_purpose",
+        "grade_subgrade",
+        "loan_to_income_ratio",
+        "interest_burden",
+        "dti_interest_risk",
+        "low_credit_score_flag"
+    ],
+    "numeric_cols": [
+        "annual_income",
+        "debt_to_income_ratio",
+        "credit_score",
+        "loan_amount",
+        "interest_rate",
+        "loan_to_income_ratio",
+        "interest_burden",
+        "dti_interest_risk",
+        "low_credit_score_flag"
+    ],
+    "categorical_cols": [
+        "gender",
+        "marital_status",
+        "education_level",
+        "employment_status",
+        "loan_purpose",
+        "grade_subgrade"
+    ],
+    "payment_plan_classes": [
+        "faiz_indirimi",
+        "hibrit_yapilandirma",
+        "kefil_teminat",
+        "kredi_tutari_dusurme",
+        "standart_yapilandirma",
+        "vade_uzatma"
+    ],
+    "xgb_best_params": {
+        "n_estimators": 559,
+        "max_depth": 4,
+        "learning_rate": 0.10844806059946407,
+        "subsample": 0.8195283560988272,
+        "colsample_bytree": 0.7053272845011436,
+        "reg_alpha": 5.247008036898402,
+        "reg_lambda": 5.268718264345461,
+        "min_child_weight": 2.4454550587535433,
+        "objective": "binary:logistic",
+        "eval_metric": "auc",
+        "tree_method": "hist",
+        "random_state": 42,
+        "n_jobs": -1,
+        "scale_pos_weight": 3.970661087866109
+    },
+    "lgbm_best_params": {
+        "n_estimators": 309,
+        "max_depth": 4,
+        "learning_rate": 0.24687713296635247,
+        "num_leaves": 74,
+        "subsample": 0.8478233640408634,
+        "colsample_bytree": 0.7070455545267649,
+        "reg_alpha": 4.961425568696223,
+        "reg_lambda": 3.8692211414353355,
+        "objective": "binary",
+        "random_state": 42,
+        "n_jobs": -1,
+        "verbose": -1,
+        "scale_pos_weight": 3.970661087866109
+    },
+    "note": "Derin öğrenme ödeme optimizasyonu katmanı simülasyon tabanlı kural etiketleriyle eğitilmiştir."
+}

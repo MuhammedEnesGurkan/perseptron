@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquare, X, Send, Bot, Sparkles } from "lucide-react";
+import { X, Send, Bot, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export function AIChatPanel() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "ai", content: "Hello! I'm your AI Risk Assistant. How can I help you analyze a customer or recovery plan today?" }
+    { role: "ai", content: "Merhaba, ben AI Risk Asistanı. Bir müşteri riskini veya kurtarma planını analiz etmenize nasıl yardımcı olabilirim?" }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -31,9 +31,9 @@ export function AIChatPanel() {
       });
       const data = await response.json();
       
-      setMessages(prev => [...prev, { role: "ai", content: data.answer || "I couldn't process that request." }]);
-    } catch (error) {
-      setMessages(prev => [...prev, { role: "ai", content: "Sorry, I encountered an error communicating with the server." }]);
+      setMessages(prev => [...prev, { role: "ai", content: data.answer || "Bu isteği işleyemedim." }]);
+    } catch {
+      setMessages(prev => [...prev, { role: "ai", content: "Sunucuyla iletişim kurarken bir hata oluştu." }]);
     } finally {
       setIsLoading(false);
     }
@@ -61,7 +61,7 @@ export function AIChatPanel() {
             <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
               <Bot className="w-5 h-5 text-primary" />
             </div>
-            <span className="font-semibold text-foreground">AI Risk Assistant</span>
+            <span className="font-semibold text-foreground">AI Risk Asistanı</span>
           </div>
           <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="rounded-full hover:bg-white/10 text-muted-foreground hover:text-foreground">
             <X className="w-5 h-5" />
@@ -100,7 +100,7 @@ export function AIChatPanel() {
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about a customer..."
+              placeholder="Bir müşteri hakkında sorun..."
               className="pr-12 bg-black/40 border-white/10 rounded-xl focus-visible:ring-primary/50"
             />
             <Button 

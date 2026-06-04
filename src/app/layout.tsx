@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Credit Risk Intelligence",
-  description: "AI-powered credit default prediction and recovery planning system.",
+  title: "AI Kredi Risk Zekası",
+  description: "Yapay zeka destekli kredi temerrüt tahmini ve kurtarma planlama sistemi.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="tr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">

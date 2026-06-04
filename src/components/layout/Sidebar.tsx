@@ -1,14 +1,12 @@
 import Link from "next/link";
-import { LayoutDashboard, FileBarChart, PieChart, Database, Settings, ScanSearch, Satellite } from "lucide-react";
+import { LayoutDashboard, FileBarChart, PieChart, Database, Settings } from "lucide-react";
 
 const navItems = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "New Prediction", href: "/risk-analysis", icon: FileBarChart },
-  { name: "EuroSAT Uydu", href: "/eurosat", icon: Satellite },
-  { name: "BHW ResNet Test", href: "/bhw-resnet", icon: ScanSearch },
-  { name: "Batch Analysis", href: "/batch-analysis", icon: Database },
-  { name: "Model Insights", href: "/model-insights", icon: PieChart },
-  { name: "Settings", href: "#", icon: Settings },
+  { name: "Panel", href: "/", icon: LayoutDashboard },
+  { name: "Yeni Tahmin", href: "/risk-analysis", icon: FileBarChart },
+  { name: "Toplu Analiz", href: "/batch-analysis", icon: Database },
+  { name: "Model İçgörüleri", href: "/model-insights", icon: PieChart },
+  { name: "Ayarlar", href: "#", icon: Settings },
 ];
 
 export function Sidebar() {
@@ -24,7 +22,7 @@ export function Sidebar() {
       </div>
       
       <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 px-2">Menu</div>
+        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 px-2">Menü</div>
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -42,10 +40,10 @@ export function Sidebar() {
       
       <div className="p-4 border-t border-white/10">
         <div className="glass p-4 rounded-xl">
-          <div className="text-sm font-medium mb-1 text-foreground">AI Models Status</div>
+          <div className="text-sm font-medium mb-1 text-foreground">Model Durumu</div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            Online & Learning
+            Çevrim içi ve hazır
           </div>
         </div>
       </div>
