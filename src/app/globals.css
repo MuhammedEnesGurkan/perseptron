@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
+  --color-background: var(--background);
+  --color-panel: var(--panel);
+  --color-panel-raised: var(--panel-raised);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-dim: var(--dim);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
+:root {
+  --background: #111816;
+  --panel: #18211f;
+  --panel-raised: #202a27;
+  --line: #2c3935;
+  --ink: #eef1e9;
+  --muted: #a4afa8;
+  --dim: #707d77;
+  --accent: #df8953;
+  --accent-soft: #3a2b23;
+  --success: #8ba77d;
+  --warning: #d6ad68;
+  --danger: #d36f62;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--background); color: var(--ink); }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+::selection { background: rgba(223, 137, 83, .28); color: #fff; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #34423e; border-radius: 999px; }
+.grid-map {
+  background-image:
+    linear-gradient(rgba(190, 214, 196, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(190, 214, 196, .045) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.topographic {
+  background-image:
+    radial-gradient(circle at 64% 12%, rgba(191, 128, 77, .18), transparent 28%),
+    radial-gradient(circle at 34% 66%, rgba(78, 105, 86, .22), transparent 32%);
+}
+.focus-ring:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

@@ -1,0 +1,14 @@
+.next
+.next-build
+node_modules
+.env.local
+
+# Local caches and generated files
+.matplotlib/
+.ultralytics/
+*.log
+*.err.log
+*.tsbuildinfo
+
+# Large trained model artifacts
+models/

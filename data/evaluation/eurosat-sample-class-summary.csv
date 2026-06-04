@@ -1,0 +1,51 @@
+model_id,model_name,class_name,sample_count,correct_count,accuracy
+convnext_tiny,ConvNeXt Tiny,AnnualCrop,5,5,1.0
+convnext_tiny,ConvNeXt Tiny,Forest,5,0,0.0
+convnext_tiny,ConvNeXt Tiny,HerbaceousVegetation,5,5,1.0
+convnext_tiny,ConvNeXt Tiny,Highway,5,4,0.8
+convnext_tiny,ConvNeXt Tiny,Industrial,5,3,0.6
+convnext_tiny,ConvNeXt Tiny,Pasture,5,3,0.6
+convnext_tiny,ConvNeXt Tiny,PermanentCrop,5,1,0.2
+convnext_tiny,ConvNeXt Tiny,Residential,5,0,0.0
+convnext_tiny,ConvNeXt Tiny,River,5,4,0.8
+convnext_tiny,ConvNeXt Tiny,SeaLake,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,AnnualCrop,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,Forest,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,HerbaceousVegetation,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,Highway,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,Industrial,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,Pasture,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,PermanentCrop,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,Residential,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,River,5,5,1.0
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,SeaLake,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,AnnualCrop,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,Forest,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,HerbaceousVegetation,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,Highway,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,Industrial,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,Pasture,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,PermanentCrop,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,Residential,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,River,5,5,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,SeaLake,5,5,1.0
+resnet18_torchscript,ResNet18 TorchScript,AnnualCrop,5,5,1.0
+resnet18_torchscript,ResNet18 TorchScript,Forest,5,1,0.2
+resnet18_torchscript,ResNet18 TorchScript,HerbaceousVegetation,5,3,0.6
+resnet18_torchscript,ResNet18 TorchScript,Highway,5,4,0.8
+resnet18_torchscript,ResNet18 TorchScript,Industrial,5,5,1.0
+resnet18_torchscript,ResNet18 TorchScript,Pasture,5,5,1.0
+resnet18_torchscript,ResNet18 TorchScript,PermanentCrop,5,1,0.2
+resnet18_torchscript,ResNet18 TorchScript,Residential,5,0,0.0
+resnet18_torchscript,ResNet18 TorchScript,River,5,4,0.8
+resnet18_torchscript,ResNet18 TorchScript,SeaLake,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,AnnualCrop,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,Forest,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,HerbaceousVegetation,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,Highway,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,Industrial,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,Pasture,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,PermanentCrop,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,Residential,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,River,5,5,1.0
+robust_efficientnet_b0,Robust EfficientNet B0,SeaLake,5,5,1.0

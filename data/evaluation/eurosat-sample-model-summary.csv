@@ -1,0 +1,6 @@
+model_id,model_name,sample_count,correct_count,accuracy
+convnext_tiny,ConvNeXt Tiny,50,30,0.6
+efficientnet_b0_torchscript,EfficientNet B0 TorchScript,50,50,1.0
+ensemble_top3_sum,4 Model Ensemble - Top-3 Sum,50,50,1.0
+resnet18_torchscript,ResNet18 TorchScript,50,33,0.66
+robust_efficientnet_b0,Robust EfficientNet B0,50,50,1.0
